@@ -48,7 +48,7 @@ public class MyFirstGame extends ApplicationAdapter {
 		// tell the camera to update its matrices
 		camera.update();
 
-		// tell the SpriteVatch to render in the
+		// tell the SpriteBatch to render in the
 		// coordinate system specified by the camera.
 		batch.setProjectionMatrix(camera.combined);
 
@@ -62,19 +62,6 @@ public class MyFirstGame extends ApplicationAdapter {
 
 	}
 
-	private void moveRainDrop() {
-		if(TimeUtils.nanoTime() - lastDropTime > 1000000000) spawnRainDrop();
-
-		for(Iterator<com.badlogic.gdx.math.Rectangle> iter = raindrops.iterator(); iter.hasNext();){
-			Rectangle raindrop = iter.next();
-			raindrop.y -= 200 * Gdx.graphics.getDeltaTime();
-			if(raindrop.y + 64 < 0) iter.remove();
-			if(raindrop.overlaps(bucket)){
-				dropSound.play();
-				iter.remove();
-			}
-		}
-	}
 
 	@Override
 	public void dispose() {
@@ -145,5 +132,20 @@ public class MyFirstGame extends ApplicationAdapter {
 		if(bucket.x < 0) bucket.x = 0;
 		if(bucket.x > 800-64) bucket.x = 800 - 64;
 
+	}
+
+
+	private void moveRainDrop() {
+		if(TimeUtils.nanoTime() - lastDropTime > 500000000) spawnRainDrop();
+
+		for(Iterator<com.badlogic.gdx.math.Rectangle> iter = raindrops.iterator(); iter.hasNext();){
+			Rectangle raindrop = iter.next();
+			raindrop.y -= 200 * Gdx.graphics.getDeltaTime();
+			if(raindrop.y + 64 < 0) iter.remove();
+			if(raindrop.overlaps(bucket)){
+				dropSound.play();
+				iter.remove();
+			}
+		}
 	}
 }
