@@ -3,32 +3,30 @@ package com.mygdx.game;
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 
 public class MyFirstGame extends ApplicationAdapter {
 
-	SpriteBatch batch;
-	BitmapFont font;
+	ShapeRenderer renderer;
 
 	@Override
 	public void create() {
-		batch = new SpriteBatch();
-		font = new BitmapFont();
+		renderer = new ShapeRenderer();
 	}
 
 	@Override
 	public void render() {
 		Gdx.gl.glClearColor(.25f, .25f, .25f, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-		batch.begin();
-		font.draw(batch, "Happy Coding!", Gdx.graphics.getWidth() / 2 ,Gdx.graphics.getHeight()/2);
-		batch.end();
+
+		renderer.begin(ShapeRenderer.ShapeType.Filled);
+		renderer.setColor(0, 1, 0, 1);
+		renderer.circle(200, 100, 75);
+		renderer.end();;
 	}
 
 	@Override
 	public void dispose() {
-		batch.dispose();
-		font.dispose();
+		renderer.dispose();
 	}
 }
