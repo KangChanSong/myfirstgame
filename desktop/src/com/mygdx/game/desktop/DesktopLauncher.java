@@ -2,6 +2,7 @@ package com.mygdx.game.desktop;
 
 import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
+import com.mygdx.game.HelloWorldGame;
 import com.mygdx.game.MyFirstGame;
 import com.mygdx.game.RandomWalker;
 
@@ -13,6 +14,6 @@ public class DesktopLauncher {
 		config.title = "Drop";
 		config.width = 800;
 		config.height = 480;
-		new LwjglApplication(new RandomWalker(), config);
+		new LwjglApplication(new HelloWorldGame(), config);
 	}
 }
